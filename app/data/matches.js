@@ -35,7 +35,6 @@ module.exports = function(app) {
     console.log(questions);
     console.log(questions[0].question[0].selectedIndex);
     console.log(questions[0].question[0].value);
-    console.log(parseInt($("#q1 option:selected").text()));
 
     for (var i = 0; i < questions.length; i++) {
       let newMatchAnswers = questions[i].question[0].selectedIndex;

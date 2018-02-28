@@ -8,9 +8,9 @@ module.exports = function(app) {
   });
 
   app.post("/api/matches", function(request, response) {
-
-    console.log(request.body);
+    response.json();
     console.log(response.json);
+    matches.push(request.body);
 
     // if (newMatch) {
     //   allMatchesData.push(request.body);
