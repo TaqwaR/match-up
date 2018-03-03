@@ -11,4 +11,8 @@ module.exports = function(app) {
     response.sendFile(path.join(__dirname, "../public/survey.html"));
   })
 
+  app.get("/matches", function(request, response) {
+    response.sendFile(path.join(__dirname, "../data/matches.js"));
+  })
+
 }

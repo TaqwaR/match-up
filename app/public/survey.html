@@ -156,11 +156,118 @@
     </footer>
 
   </div>
-
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="../data/matches.js" type="text/javascript"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+  <!-- <script type="text/javascript" src="../data/matches.js"></script> -->
 </body>
 
 </html>
+
+<script type="text/javascript">
+  const quesOne = $("#q1");
+  const quesTwo = $("#q2");
+  const quesThree = $("#q3");
+  const quesFour = $("#q4");
+  const quesFive = $("#q5");
+  const quesSix = $("#q6");
+  const quesSeven = $("#q7");
+  const quesEight = $("#q8");
+  const quesNine = $("#q9");
+  const quesTen = $("#q10");
+
+  const questions = [{
+      question: quesOne
+    },
+    {
+      question: quesTwo
+    },
+    {
+      question: quesThree
+    },
+    {
+      question: quesFour
+    },
+    {
+      question: quesFive
+    },
+    {
+      question: quesSix
+    },
+    {
+      question: quesSeven
+    },
+    {
+      question: quesEight
+    },
+    {
+      question: quesNine
+    },
+    {
+      question: quesTen
+    }
+  ];
+
+  let newMatch = {
+    name: [],
+    photo: [],
+    scores: []
+  };
+
+
+  const submitBtn = $("#submit");
+
+  submitBtn.on("click", function(event) {
+    event.preventDefault();
+    console.log(questions.length);
+    console.log(questions);
+    console.log(questions[0].question[0].selectedIndex);
+    console.log(questions[0].question[0].value);
+
+    for (var i = 0; i < questions.length; i++) {
+      let newMatchAnswers = questions[i].question[0].selectedIndex;
+      console.log(newMatchAnswers);
+      newMatch.scores.push(newMatchAnswers)
+    }
+
+    newMatch.name = $("#new-name").val().trim();
+    newMatch.photo = $("#new-photo").val().trim();
+    console.log(newMatch);
+
+    let currentURL = window.location.origin;
+    let queryURL = currentURL + "/api/matches";
+
+    $.ajax({
+      url: queryURL,
+      method: "POST"
+    }).done(function(response) {
+      console.log(response);
+
+
+    })
+
+
+    scoreDiff()
+
+    function scoreDiff() {
+      const subtract = (a, b) => a - b;
+      const add = (a, b) => a + b;
+
+      let newScores = newMatch.scores;
+      let totalNew = newScores.reduce(add);
+      console.log(totalNew);
+
+      for (var i = 0; i < allMatchesData[i].scores.length; i++) {
+        let oldScores = allMatchesData[i].scores;
+        let totalOld = oldScores.reduce(add);
+        console.log(totalOld);
+        let matchDiff =
+      }
+
+      allMatchesData.push(newMatch);
+
+    }
+  });
+
+  // $.post("/api/matches", newMatch, function(data) {})
+</script>
