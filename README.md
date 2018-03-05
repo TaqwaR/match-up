@@ -52,5 +52,5 @@ for (var i = 0; i < matches.length; i++) {
 
 - Step 1: Fork this repository and clone it to your local environment.
 - Step 2: Navigate to the cloned repo/folder and run `npm init`. Once the repo is initialized, run `npm install`. This will download all of the necessary dependencies. 
-- Step 3: run node server.js, navigate to localhost:8080 on yur favorite web browser, and the application should ne up and running.
+- Step 3: run node server.js, navigate to ***localhost:8080*** on your favorite web browser, and the application should be up and running.
 - Step 4 (bonus): Open the files in your favorite text editor and customize the application even more!
