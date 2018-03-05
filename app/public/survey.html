@@ -245,7 +245,16 @@
 
 
     })
-    $.post("/api/matches", newMatch)
+
+    $.ajax({
+      url: queryURL,
+      method: "POST",
+      data: newMatch
+    }).done(function(response) {
+      console.log(response);
+    })
+
+    // $.post(currentURL + "/api/matches", newMatch)
 
   });
 </script>

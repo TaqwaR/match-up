@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 8080;
 //==============================
 //EXPRESS APP DATA PARSING SETUP
 //==============================
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 //=============================================
