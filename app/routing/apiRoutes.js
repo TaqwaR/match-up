@@ -48,14 +48,20 @@ module.exports = function(app) {
     //let totalApiScores = apiScores.reduce(add);
     //let totalApiScores = matches[i].scores.reduce(add)
 
+    let apiScoreOptions = [];
+
     for (var i = 0; i < matches.length; i++) {
       let apiScoreTotals = matches[i].scores.reduce(add);
       let matchDiff = apiScoreTotals - totalNew;
       console.log("Index ", i, "Total API scores", apiScoreTotals);
       console.log("Total Difference NEW vs API: ", Math.abs(matchDiff));
+      apiScoreOptions.push(Math.abs(matchDiff));
+      console.log("API Score Options: ", apiScoreOptions);
       console.log("===============================");
       console.log("                              ");
     };
+
+      console.log("Total (?) API Score Options: ", apiScoreOptions);
 
 
     // if (matchDiff ) {
