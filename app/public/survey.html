@@ -151,7 +151,7 @@
     <hr>
     <footer class="footer">
       <div class="container">
-        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a></p>
+        <p><a href="/api/friends">API Friends List</a></p>
       </div>
     </footer>
 
@@ -218,43 +218,55 @@
   const submitBtn = $("#submit");
 
   submitBtn.on("click", function(event) {
-    event.preventDefault();
-    console.log(questions.length);
-    console.log(questions);
-    console.log(questions[0].question[0].selectedIndex);
-    console.log(questions[0].question[0].value);
-
-    for (var i = 0; i < questions.length; i++) {
-      let newMatchAnswers = questions[i].question[0].selectedIndex;
-      console.log(newMatchAnswers);
-      newMatch.scores.push(newMatchAnswers)
-    }
 
     newMatch.name = $("#new-name").val().trim();
     newMatch.photo = $("#new-photo").val().trim();
-    console.log(newMatch);
 
-    let currentURL = window.location.origin;
-    let queryURL = currentURL + "/api/matches";
+    if (questions[0].question[0].selectedIndex === 0 || questions[1].question[0].selectedIndex === 0 || questions[2].question[0].selectedIndex === 0 || questions[3].question[0].selectedIndex === 0 || questions[4].question[0].selectedIndex === 0 ||
+      questions[5].question[0].selectedIndex === 0 || questions[6].question[0].selectedIndex === 0 || questions[7].question[0].selectedIndex === 0 || questions[8].question[0].selectedIndex === 0 || questions[9].question[0].selectedIndex === 0) {
 
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).done(function(response) {
-      console.log(response);
+      alert("Please Provide An Answer For All Questions.")
+    } else {
+
+      event.preventDefault();
+      console.log(questions.length);
+      console.log(questions);
+      console.log(questions[0].question[0].selectedIndex);
+      console.log(questions[0].question[0].value);
+
+      for (var i = 0; i < questions.length; i++) {
+        let newMatchAnswers = questions[i].question[0].selectedIndex;
+        console.log(newMatchAnswers);
+        newMatch.scores.push(newMatchAnswers)
+      }
+
+      // newMatch.name = $("#new-name").val().trim();
+      // newMatch.photo = $("#new-photo").val().trim();
+      console.log(newMatch);
+
+      let currentURL = window.location.origin;
+      let queryURL = currentURL + "/api/matches";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET",
+      }).done(function(response) {
+        console.log(response);
 
 
-    })
+      })
 
-    $.ajax({
-      url: queryURL,
-      method: "POST",
-      data: newMatch
-    }).done(function(response) {
-      console.log(response);
-    })
+      $.ajax({
+        url: queryURL,
+        method: "POST",
+        data: newMatch
+      }).done(function(response) {
+        console.log(response);
+      })
 
-    // $.post(currentURL + "/api/matches", newMatch)
+      // $.post(currentURL + "/api/matches", newMatch)
+
+    }
 
   });
 </script>

@@ -14,6 +14,9 @@ module.exports = function(app) {
 
     let newMatch = request.body;
     let newScores = newMatch.scores;
+    let matchUp;
+    let matchUpPhoto;
+
 
     console.log("request.body/newmatch: ");
     console.log(newMatch);
@@ -54,7 +57,7 @@ module.exports = function(app) {
       console.log("                              ");
     };
 
-      console.log("Total (?) API Score Options: ", apiScoreOptions);
+      console.log("Total API Score Options: ", apiScoreOptions);
       let lowestVariance = Math.min(... apiScoreOptions);
       console.log("Lowest Variance: ", lowestVariance);
       console.log("=============================");
@@ -65,15 +68,14 @@ module.exports = function(app) {
       let matchDiff = apiScoreTotals - totalNew;
       let matchDiffAbs = Math.abs(matchDiff);
 
-      // console.log("Second For Loop - API Score Totals: ", apiScoreTotals);
-      // console.log(totalNew);
-      // console.log(lowestVariance);
-
       if (matchDiffAbs <= lowestVariance)  {
+        matchUp = matches[i].name;
+        matchUpPhoto = matches[i].photo;
         console.log("Your Best Match is: ");
-        console.log(matches[i].name);
-        console.log(matches[i].photo);
+        console.log(matchUp);
+        console.log(matchUpPhoto);
       }
+
     }
 
 
@@ -81,13 +83,3 @@ module.exports = function(app) {
 
     })
   };
-//
-///
-///
-//
-//
-//
-//
-///
-//
-//
