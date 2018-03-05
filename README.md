@@ -14,7 +14,7 @@ Once you answer all questions and submit, you will be Matched Up with another us
 - Bootstrap
 - Body-Parser (node package)
 - Path (node package)
-- AJAX & JSON and a custom API.
+- AJAX, JSON, and a custom API.
 
 ## Code Example
 
