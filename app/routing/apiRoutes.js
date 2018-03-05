@@ -1,6 +1,6 @@
 
 const matches = require("../data/matches.js");
-//console.log(matches);
+
 module.exports = function(app) {
 
   app.get("/api/matches", function(request, response) {
@@ -10,25 +10,17 @@ module.exports = function(app) {
 
   app.post("/api/matches", function(request, response) {
 
-    //console.log("req.body: ", request.body);
+    //console.log("request.body: ", request.body);
 
     let newMatch = request.body;
-    //const scores = 'scores[]';
-    // let newMatchScores = newMatch[scores];
     let newScores = newMatch.scores;
 
-    console.log("req.body/newmatch: ");
+    console.log("request.body/newmatch: ");
     console.log(newMatch);
     console.log("===============================");
-    //console.log("newmatchscores", newMatchScores);
 
     const subtract = (a, b) => parseInt(a) - parseInt(b);
     const add = (a, b) => parseInt(a) + parseInt(b);
-
-    // const subTest = [100, 20, 5];
-    // const subTestResult = subTest.reduce(add);
-    // console.log("subtraction test: ", subTestResult);
-
 
     // let newScores = newMatch.scores;
     let totalNew = newScores.reduce(add);
@@ -53,20 +45,37 @@ module.exports = function(app) {
     for (var i = 0; i < matches.length; i++) {
       let apiScoreTotals = matches[i].scores.reduce(add);
       let matchDiff = apiScoreTotals - totalNew;
+      let matchDiffAbs = Math.abs(matchDiff);
       console.log("Index ", i, "Total API scores", apiScoreTotals);
-      console.log("Total Difference NEW vs API: ", Math.abs(matchDiff));
-      apiScoreOptions.push(Math.abs(matchDiff));
+      console.log("Total Difference NEW vs API: ", matchDiffAbs);
+      apiScoreOptions.push(matchDiffAbs);
       console.log("API Score Options: ", apiScoreOptions);
       console.log("===============================");
       console.log("                              ");
     };
 
       console.log("Total (?) API Score Options: ", apiScoreOptions);
+      let lowestVariance = Math.min(... apiScoreOptions);
+      console.log("Lowest Variance: ", lowestVariance);
+      console.log("=============================");
 
+    for (var i = 0; i < matches.length; i++) {
 
-    // if (matchDiff ) {
-    //
-    // }
+      let apiScoreTotals = matches[i].scores.reduce(add);
+      let matchDiff = apiScoreTotals - totalNew;
+      let matchDiffAbs = Math.abs(matchDiff);
+
+      // console.log("Second For Loop - API Score Totals: ", apiScoreTotals);
+      // console.log(totalNew);
+      // console.log(lowestVariance);
+
+      if (matchDiffAbs <= lowestVariance)  {
+        console.log("Your Best Match is: ");
+        console.log(matches[i].name);
+        console.log(matches[i].photo);
+      }
+    }
+
 
       //matches.allMatchesData.push(newMatch);
 
