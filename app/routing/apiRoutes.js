@@ -37,7 +37,7 @@ module.exports = function(app) {
     console.log("===============================");
     console.log("Matches Object Length: ", matches.length);
     console.log("===============================");
-    response.json("Done.");
+    //response.json("Done.");
 
     //let apiScoreTotals = matches[0].scores.reduce(add);
     //let totalApiScores = apiScores.reduce(add);
@@ -75,11 +75,8 @@ module.exports = function(app) {
         console.log(matchUp);
         console.log(matchUpPhoto);
       }
-
     }
-
-
       //matches.allMatchesData.push(newMatch);
-
+        response.json(matchUp)
     })
   };
