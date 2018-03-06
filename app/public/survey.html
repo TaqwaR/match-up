@@ -148,12 +148,31 @@
     <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
      Submit</button>
 
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Your Match:</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body my-modal">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary my-close-modal" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <hr>
     <footer class="footer">
       <div class="container">
         <p><a href="/api/friends">API Friends List</a></p>
       </div>
     </footer>
+
 
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -240,8 +259,6 @@
         newMatch.scores.push(newMatchAnswers)
       }
 
-      // newMatch.name = $("#new-name").val().trim();
-      // newMatch.photo = $("#new-photo").val().trim();
       console.log(newMatch);
 
       let currentURL = window.location.origin;
@@ -262,13 +279,34 @@
         data: newMatch
       }).done(function(response) {
         console.log(response);
+        console.log(response.name);
+        console.log(response.photo);
+        displayModal(response.name, response.photo);
+
       })
 
-      // $.post(currentURL + "/api/matches", newMatch)
+      function displayModal(who, photo) {
+        $(".my-modal").append("<h3>" + who + "</h3>");
+        $(".my-modal").append("<img src='" + photo + "'alt='match photo'>")
+        $("#exampleModalCenter").css("display", "block");
+        $("#exampleModalCenter").toggleClass("show");
+        $("#exampleModalCenter").attr("aria-hidden", "false");
+        $(".my-close-modal").on("click", function(event) {
+          clear();
+        });
+      }
 
-      // $.ajax
-
+      function clear() {
+        $("#new-name").val('');
+        $("#new-photo").val('');
+        for (var i = 0; i < questions.length; i++) {
+          questions[i].question[0].selectedIndex = "";
+        }
+        $(".my-modal").empty();
+        $("#exampleModalCenter").attr("aria-hidden", "true");
+        $("#exampleModalCenter").css("display", "none");
+        $("#exampleModalCenter").toggleClass("show");
+      }
     }
-
   });
 </script>

@@ -69,11 +69,13 @@ module.exports = function(app) {
       let matchDiffAbs = Math.abs(matchDiff);
 
       if (matchDiffAbs <= lowestVariance)  {
-        matchUp = matches[i].name;
+        matchUpName = matches[i].name;
         matchUpPhoto = matches[i].photo;
+        matchUp = matches[i]
         console.log("Your Best Match is: ");
         console.log(matchUp);
         console.log(matchUpPhoto);
+        console.log(matchUp);
       }
     }
       //matches.allMatchesData.push(newMatch);
