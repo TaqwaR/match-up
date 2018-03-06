@@ -10,8 +10,6 @@ module.exports = function(app) {
 
   app.post("/api/matches", function(request, response) {
 
-    //console.log("request.body: ", request.body);
-
     let newMatch = request.body;
     let newScores = newMatch.scores;
     let matchUp;
@@ -37,11 +35,6 @@ module.exports = function(app) {
     console.log("===============================");
     console.log("Matches Object Length: ", matches.length);
     console.log("===============================");
-    //response.json("Done.");
-
-    //let apiScoreTotals = matches[0].scores.reduce(add);
-    //let totalApiScores = apiScores.reduce(add);
-    //let totalApiScores = matches[i].scores.reduce(add)
 
     let apiScoreOptions = [];
 
@@ -74,11 +67,8 @@ module.exports = function(app) {
         matchUp = matches[i]
         console.log("Your Best Match is: ");
         console.log(matchUp);
-        console.log(matchUpPhoto);
-        console.log(matchUp);
       }
     }
-      //matches.allMatchesData.push(newMatch);
         response.json(matchUp)
     })
   };
